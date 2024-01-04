@@ -8,12 +8,11 @@ def pascal_triangle(n):
 
     """
     The pascal triangle implementation , using list 
-    
     """
 
     if n <= 0:
         return []
-    triangle = [[1],]
+    triangle = [[1]]
     for id in range(n - 1):
         dat = triangle[-1]
         lit_sqr = [1]
