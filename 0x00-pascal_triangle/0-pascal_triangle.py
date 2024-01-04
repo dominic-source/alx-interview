@@ -9,7 +9,7 @@ def pascal_triangle(n):
     """The pascal triangle implementation"""
 
     if n <= 0:
-        return [[]]
+        return []
     triangle = [[1],]
     for id in range(n - 1):
         dat = triangle[-1]
