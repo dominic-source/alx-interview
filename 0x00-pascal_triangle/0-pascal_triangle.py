@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 a module that implement the pascals triangle
 """
