@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-a module that implement the pascals triangle
+A module that implement the pascals triangle
 """
 
 
 def pascal_triangle(n):
-    """The pascal triangle implementation"""
+    """
+    The pascal triangle implementation , using list 
+    """
 
     if n <= 0:
         return []
