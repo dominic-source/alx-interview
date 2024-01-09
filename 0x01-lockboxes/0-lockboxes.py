@@ -8,7 +8,7 @@ def canUnlockAll(boxes):
 
     numOfBoxes = len(boxes)
 
-    setOfKeys = set([0])
+    setOfKeys = {0}
     lockedBoxes = set(range(1, numOfBoxes))
 
     queue = list(boxes[0])
