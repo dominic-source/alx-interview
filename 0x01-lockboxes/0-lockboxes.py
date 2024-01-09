@@ -20,6 +20,4 @@ def canUnlockAll(boxes):
                 if locked in setOfKeys:
                     unlockedBoxes += 1
                     setOfKeys.add(locked)
-    if unlockedBoxes < len(boxes):
-        return False
-    return True
+    return unlockedBoxes == len(boxes)
