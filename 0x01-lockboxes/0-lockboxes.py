@@ -19,7 +19,7 @@ def canUnlockAll(boxes):
             unlockedBoxes.add(key)
             if key in lockedBoxes:
                 lockedBoxes.remove(key)
-            keys = boxes[key])
+            keys = boxes[key]
             for newKey in keys:
                 if newKey not in unlockedBoxes:
                     queue.append(newKey)
