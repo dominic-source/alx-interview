@@ -8,17 +8,20 @@ def canUnlockAll(boxes):
 
     numOfBoxes = len(boxes)
 
-    setOfKeys = {0}
+    unlockedBoxes = {0}
     lockedBoxes = set(range(1, numOfBoxes))
 
     queue = list(boxes[0])
 
     while queue:
         key = queue.pop(0)
-        if key not in setOfKeys:
-            setOfKeys.add(key)
+        if key not in unlockedBoxes:
+            unlockedBoxes.add(key)
             if key in lockedBoxes:
                 lockedBoxes.remove(key)
-            queue.extend(boxes[key])
+            keys = boxes[key])
+            for newKey in keys:
+                if newKey not in unlockedBoxes:
+                    queue.append(newKey)
 
-    return len(setOfKeys) == numOfBoxes
+    return len(unlockedBoxes) == numOfBoxes
