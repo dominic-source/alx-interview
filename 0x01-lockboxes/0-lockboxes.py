@@ -6,18 +6,19 @@
 def canUnlockAll(boxes):
     """find boxes that cannot be unlocked"""
 
-    unlockedBoxes = 0
-    setOfKeys = set([0])
-    lockedBoxes = set()
+    numOfBoxes = len(boxes)
 
-    for idx, box in enumerate(boxes):
-        if idx not in setOfKeys:
-            lockedBoxes.add(idx)
-        elif idx in setOfKeys:
-            unlockedBoxes += 1
-            setOfKeys.update(box)
-            for locked in lockedBoxes:
-                if locked in setOfKeys:
-                    unlockedBoxes += 1
-                    setOfKeys.add(locked)
-    return unlockedBoxes == len(boxes)
+    setOfKeys = set([0])
+    lockedBoxes = set(range(1, numOfBoxes))
+
+    queue = list(boxes[0])
+
+    while queue:
+        key = queue.pop(0)
+        if key not in setOfKeys:
+            setOfKeys.add(key)
+            if key in lockedBoxes:
+                lockedBoxes.remove(key)
+            queue.extend(boxes[key])
+
+    return len(setOfKeys) == numOfBoxes
