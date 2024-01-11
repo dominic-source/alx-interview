@@ -8,13 +8,16 @@ def canUnlockAll(boxes):
 
     setOfKeys = set([0])
     lockedBoxes = set()
+    length = len(boxes)
 
     for idx, box in enumerate(boxes):
         if idx not in setOfKeys:
             lockedBoxes.add(idx)
         elif idx in setOfKeys:
+            lockedBoxes.discard(idx)
             setOfKeys.update(box)
-        for locked in lockedBoxes:
+        for locked in set(lockedBoxes):
             if locked in setOfKeys:
+                lockedBoxes.discard(locked)
                 setOfKeys.update(boxes[locked])
-    return len(setOfKeys) == len(boxes)
+    return len(lockedBoxes) == 0
