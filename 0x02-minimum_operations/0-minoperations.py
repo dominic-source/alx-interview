@@ -12,7 +12,8 @@ def minOperations(n):
 
     while CTC < n:
         # if n is divisible by the CTC count, then we should copy and paste it
-        # There cannot be two copy_all but there can be more than one paste at a time
+        # There cannot be two copy_all
+        # but there can be more than one paste at a time
         if n % CTC == 0:
             COPY_ALL = CTC
             count_op += 1
