@@ -9,6 +9,6 @@ def validUTF8(data):
     """Detect a valid utf-8 encoding"""
 
     for i in data:
-        if i > 0b01111111:
+        if not (i <= 0b01111111):
             return False
     return True
