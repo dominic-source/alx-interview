@@ -8,7 +8,7 @@
 def validUTF8(data):
     """Detect a valid utf-8 encoding"""
     length = len(data)
-
+    expected_continuation_bytes = [0, 1, 1, 2, 2, 3, 3, 4]
     j = 0
     while j < length:
         byte = data[j]
@@ -24,7 +24,8 @@ def validUTF8(data):
             count += 1
 
         # Check for invalid byte
-        if count == 1 or count > length:
+        if count == 1 or count > length or count > expected_continuation_bytes[
+           byte >> 3]:
             return False
 
         # check for continuation byte
@@ -32,7 +33,7 @@ def validUTF8(data):
             j += 1
             if j >= len(data) or (data[j] & 0b11000000) != 0b10000000:
                 return False
-        if (data[count + j] & 0b11000000) == 0b10000000:
-            return False 
+        # if (data[count + j] & 0b11000000) == 0b10000000:
+        #     return False
         j += 1
     return True
