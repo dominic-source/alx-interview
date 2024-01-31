@@ -7,24 +7,23 @@
 
 def validUTF8(data):
     """Detect a valid utf-8 encoding"""
-    count = 0
-    for i in data:
 
-        # Check for continuation byte
-        if (i & 0b10000000) != 0 and (i & 0b01000000) == 0 and count > 0:
-            count -= 1
-            continue
-        elif (i & 0b10000000) != 0 and (i & 0b01000000) == 0 and count <= 0:
-            return False
-        elif (i & 0b10000000) == 0 and count == 0:
-            continue
-        elif (i & 0b10000000) == 0 and count > 0:
-            return False
+    for byte in data:
 
-        # count the number of initial 1 bit bits
-        start_bin = 0b10000000
-        while (i & start_bin) and count < 5:
+        # Check if byte is a start byte for a single byte character
+        if (byte & 0b10000000) == 0:
+            continue
+
+        # Check if byte is a multibyte character
+        count = 1
+        while count < 8 and byte & (0b10000000 >> count) != 0:
             count += 1
-            start_bin >>= 1
 
+        # Check for invalid byte
+        if count == 1 or count > len(data):
+            return False
+
+        for i in range(1, count):
+            if i >= len(data) or (data[i] & 0b11000000) != 0b10000000:
+                return False
     return True
