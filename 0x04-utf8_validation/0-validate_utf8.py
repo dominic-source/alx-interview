@@ -28,7 +28,7 @@ def validUTF8(data):
             return False
 
         # check for continuation byte
-        for i in range(0, count + 1):
+        for i in range(1, count):
             j += 1
             if j >= len(data) or (data[j] & 0b11000000) != 0b10000000:
                 return False
