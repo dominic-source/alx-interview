@@ -8,6 +8,9 @@
 def validUTF8(data):
     """Detect a valid utf-8 encoding"""
 
+    if not data:
+        return False
+
     for byte in data:
 
         # Check if byte is a start byte for a single byte character
