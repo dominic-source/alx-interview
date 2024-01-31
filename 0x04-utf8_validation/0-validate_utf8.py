@@ -33,8 +33,6 @@ def validUTF8(data):
             if j >= len(data) or (data[j] & 0b11000000) != 0b10000000:
                 return False
 
-        if (data[j]& 0b11000000) == 0b10000000:
-            return False
         if (data[j + 1] & 0b11000000) == 0b10000000:
             return False
         j += 1
