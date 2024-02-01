@@ -24,16 +24,16 @@ def validUTF8(data):
             count += 1
 
         # Check for invalid byte
-        if count == 1 or count > length:
+        if count == 1 or count > length or count > 4:
             return False
 
         # check for continuation byte
         for i in range(1, count):
             j += 1
-            if j >= len(data) or (data[j] & 0b11000000) != 0b10000000:
+            if j >= length or (data[j] & 0b11000000) != 0b10000000:
                 return False
 
-        if (data[j + 1] & 0b11000000) == 0b10000000:
-            return False
+        # if (data[j + 1] & 0b11000000) == 0b10000000:
+        #     return False
         j += 1
     return True
