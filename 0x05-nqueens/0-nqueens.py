@@ -35,17 +35,17 @@ def valid_column(index, matrix):
     return True
 
 
-def valid_diagonal(matrix, row, column):
+def valid_diagonal(mat, row, col):
     """Validate a diagonal that a queen can be placed"""
 
-    for i in range(N):
-        if (matrix[row][i] == 1) or (matrix[i][column] == 1):
+    for m in range(N):
+        if (mat[row][m] == 1) or (mat[m][col] == 1):
             return False
 
-    for i in range(N):
+    for k in range(N):
         for j in range(N):
-            if (i + j == row + column) or (i - j == row - column):
-                if matrix[i][j] == 1:
+            if (k - j == row - col) or (k + j == row + col):
+                if mat[k][j] == 1:
                     return False
     return True
 
@@ -68,10 +68,10 @@ def print_matrix(matrix):
     print(index)
 
 
-def generate_solutions(col, matrix, all_solutions):
+def generate_solutions(col, matrix, solutions):
     """Generate solutions for the N queens problem"""
     if col >= N:
-        all_solutions.append([row[:] for row in matrix])
+        solutions.append([row[:] for row in matrix])
         return
 
     for i in range(N):
@@ -80,13 +80,13 @@ def generate_solutions(col, matrix, all_solutions):
 
             matrix[i][col] = 1
 
-            generate_solutions(col + 1, matrix, all_solutions)
+            generate_solutions(col + 1, matrix, solutions)
             matrix[i][col] = 0
 
 
 if __name__ == '__main__':
-    all_solutions = []
-    generate_solutions(0, matrix, all_solutions)
+    solutions = []
+    generate_solutions(0, matrix, solutions)
 
-    for solution in all_solutions:
+    for solution in solutions:
         print_matrix(solution)
