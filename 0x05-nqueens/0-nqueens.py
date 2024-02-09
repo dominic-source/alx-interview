@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 """Learn about the n queens problem and how to solve it"""
-from typing import List
 import sys
 
 args = sys.argv
@@ -23,12 +22,12 @@ if N < 4:
 matrix = [[0] * N for _ in range(N)]
 
 
-def valid_row(row: List[int]) -> bool:
+def valid_row(row):
     """Validate a row that a queen can be placed"""
     return sum(row) == 0
 
 
-def valid_column(index: int, matrix: List[List[int]]) -> bool:
+def valid_column(index, matrix):
     """Validate a column that a queen can be placed"""
     for row in matrix:
         if row[index] == 1:
@@ -36,7 +35,7 @@ def valid_column(index: int, matrix: List[List[int]]) -> bool:
     return True
 
 
-def valid_diagonal(matrix: List[List[int]], row: int, column: int) -> bool:
+def valid_diagonal(matrix, row, column):
     """Validate a diagonal that a queen can be placed"""
 
     for i in range(N):
@@ -51,7 +50,7 @@ def valid_diagonal(matrix: List[List[int]], row: int, column: int) -> bool:
     return True
 
 
-def get_index(arr: List[int]) -> int:
+def get_index(arr):
     """Get index of position 1"""
     i = 0
     while i < N:
@@ -61,7 +60,7 @@ def get_index(arr: List[int]) -> int:
     return -1
 
 
-def print_matrix(matrix: List[List[int]]):
+def print_matrix(matrix):
     """Print the positions of the n queen solution"""
     index = []
     for idx, row in enumerate(matrix):
@@ -69,8 +68,7 @@ def print_matrix(matrix: List[List[int]]):
     print(index)
 
 
-def generate_solutions(col: int, matrix: List[List[int]],
-                       all_solutions: List[List[List[int]]]) -> bool:
+def generate_solutions(col, matrix, all_solutions):
     """Generate solutions for the N queens problem"""
     if col >= N:
         all_solutions.append([row[:] for row in matrix])
