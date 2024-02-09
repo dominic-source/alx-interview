@@ -3,6 +3,7 @@
 """Learn about the n queens problem and how to solve it"""
 from typing import List
 import sys
+import time
 
 args = sys.argv
 if len(args) > 2:
@@ -85,17 +86,45 @@ def reset_row(row_ind: int, matrix: List[List[int]]) -> None:
             matrix[row_ind][i] = 0
             i += 1
 
+def get_index(row: int, matrix: List[List[int]]) -> int:
+    """Get index of position 1"""
+    i = 0
+    while i < N:
+        if matrix[row][i] == 1:
+            return i
+        i += 1
+    return -1
+
+
+def print_matrix():
+    for row in matrix:
+        print(row)
+    print("")
+    time.sleep(1)
+
 
 def generate_solutions():
     """Generate solutions for the N queens problem"""
     col, row  = 0, 0
     solution = False
     while not solution:
-        if valid_column(col, matrix) and valid_row(matrix[row]) and valid_diagonal(matrix, row, column):
+        if valid_column(col, matrix) and valid_row(matrix[row]) and valid_diagonal(matrix, row, col):
             matrix[row][col] = 1
             row += 1
+            print_matrix()
         else:
+            print_matrix()
             col += 1
+            if col == N:
+                reset_row(row, matrix)
+                row -= 1
+                nex = get_index(row, matrix)
+                if nex != -1:
+                    col = nex + 1
+                else:
+                    col = 0
+        if row == N:
+            solution = True
     print(matrix)
 
 
