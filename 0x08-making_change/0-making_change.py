@@ -12,7 +12,7 @@ def makeChange(coins, total):
     r_amount = total
     ans = []
     i = 0
-    while i < length and r_amount >= 0:
+    while i < length and r_amount > 0:
         if r_amount >= sorted_coins[~i]:
             ans.append(sorted_coins[~i])
             r_amount -= sorted_coins[~i]
