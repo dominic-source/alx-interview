@@ -90,3 +90,4 @@ if __name__ == '__main__':
 
     for solution in all_solutions:
         print_matrix(solution)
+        
