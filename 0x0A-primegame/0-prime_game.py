@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """
-This modules creates a prime game. It contains several functions to handle the game
+This modules creates a prime game.
+It contains several functions to handle the game
 """
+
 
 def buildPrime(num) -> dict:
     """ buildPrime: builds an array of prime numbers
         from 0 to the max number in the given nums for rounds
-        and return an object where key is the "prime number" in string 
-        the value is "true"
+        and return an object where key is the "prime number"
+        in string the value is "true"
 
         Application of SIEVE OF ERATOSTHENES
     """
@@ -21,8 +23,8 @@ def buildPrime(num) -> dict:
             mult = 2 * i
             while mult <= num:
                 array[mult] = False
-                mult = i + mult
-    newArray = {str(i):i for i in range(num + 1) if array[i] == True}
+                mult = i+mult
+    newArray = {str(i): i for i in range(num + 1) if array[i] is True}
     return (newArray)
 
 
@@ -58,7 +60,7 @@ def optimalYieldPrime(obj_primes):
 
 def isWinner(x, nums):
     """find the winner in the game played by Ben and Maria
-    
+
     Logic:
     build the prime number based on the max number in the array
     set bensWinCount, set mariaWinCount.
@@ -68,12 +70,15 @@ def isWinner(x, nums):
     for each number n in the array, create a list ranging from 1 to n
     benMaria = true
     loop benMaria
-        set Maria to pick a single number from a max of n, if there are no prime
+        set Maria to pick a single number from a max of n,
+        if there are no prime
             numbers in the array of n, ben wins that round
-            record it for ben, set benMaria to false in order to stop the current iteration
+            record it for ben, set benMaria to false in order to
+            stop the current iteration
          set ben to pick a single number from a max of n, if there are no prime
             numbers in the array of n, Maria wins that round
-            record it for ben, set benMaria to false in order to stop the current iteration
+            record it for ben, set benMaria to false in order to
+            stop the current iteration
     """
 
     # Build an object of prime numbers based on the max num in nums
