@@ -80,7 +80,8 @@ def isWinner(x, nums):
             record it for ben, set benMaria to false in order to
             stop the current iteration
     """
-
+    if x == 0 or not nums:
+        return None
     # Build an object of prime numbers based on the max num in nums
     obj_prime = buildPrime(max(nums))
 
