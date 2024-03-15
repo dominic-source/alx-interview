@@ -8,8 +8,7 @@ It contains several functions to handle the game
 def buildPrime(num) -> dict:
     """ buildPrime: builds an array of prime numbers
         from 0 to the max number in the given nums for rounds
-        and return an object where key is the "prime number"
-        in string the value is "true"
+        and returns an array of "prime number" of to the maximum num
 
         Application of SIEVE OF ERATOSTHENES
     """
@@ -24,38 +23,9 @@ def buildPrime(num) -> dict:
             while mult <= num:
                 array[mult] = False
                 mult = i+mult
-    newArray = {str(i): i for i in range(num + 1) if array[i] is True}
+    newArray = [i for i in range(num + 1) if array[i] is True]
+
     return (newArray)
-
-
-def validPrimeArray(array, prime_obj) -> bool:
-    """validPrimeArray: validates array contains at least
-    a prime number
-    """
-    if len(array) == 0:
-        return False
-    for i in array:
-        if prime_obj.get(str(i)):
-            return True
-    return False
-
-
-def delMultiples(array, num):
-    """delMultiples: remove multiples of a picked number which
-    is less than or equal to the max number in the array
-    """
-    i = 0
-    while i < len(array):
-        if (array[i] % num) == 0:
-            array.remove(array[i])
-        i += 1
-    return array
-
-
-def optimalYieldPrime(obj_primes):
-    """Yield a prime number optimally"""
-    for key, value in obj_primes.items():
-        yield value
 
 
 def isWinner(x, nums):
@@ -73,22 +43,14 @@ def isWinner(x, nums):
     marias_win = 0
 
     for val in range(x):
-        strategy = [i for i in range(1, nums[val] + 1)]
-        benMaria = True
-        prime_yield = optimalYieldPrime(obj_prime)
-        while benMaria:
-            if not validPrimeArray(strategy, obj_prime):
-                bens_win += 1
-                benMaria = False
-                break
-            mariaPick = next(prime_yield)
-            strategy = delMultiples(strategy, mariaPick)
-            if not validPrimeArray(strategy, obj_prime):
-                marias_win += 1
-                benMaria = False
-                break
-            benPick = next(prime_yield)
-            strategy = delMultiples(strategy, benPick)
+        # Build a new prime from the given prime obj_prime
+        newPrime = [prime for prime in obj_prime if prime <= nums[val]]
+        if len(newPrime) == 0:
+            bens_win += 1
+        if len(newPrime) % 2 == 0:
+            bens_win += 1
+        else:
+            marias_win += 1
     if bens_win == marias_win:
         return None
     if bens_win > marias_win:
