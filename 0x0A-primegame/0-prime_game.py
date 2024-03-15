@@ -60,25 +60,6 @@ def optimalYieldPrime(obj_primes):
 
 def isWinner(x, nums):
     """find the winner in the game played by Ben and Maria
-
-    Logic:
-    build the prime number based on the max number in the array
-    set bensWinCount, set mariaWinCount.
-    set rounds = x and reduce it for each time a winner is found.
-
-    loop the given array
-    for each number n in the array, create a list ranging from 1 to n
-    benMaria = true
-    loop benMaria
-        set Maria to pick a single number from a max of n,
-        if there are no prime
-            numbers in the array of n, ben wins that round
-            record it for ben, set benMaria to false in order to
-            stop the current iteration
-         set ben to pick a single number from a max of n, if there are no prime
-            numbers in the array of n, Maria wins that round
-            record it for ben, set benMaria to false in order to
-            stop the current iteration
     """
     if x == 0 or not nums or x is None:
         return None
