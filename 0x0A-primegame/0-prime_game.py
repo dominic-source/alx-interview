@@ -82,6 +82,8 @@ def isWinner(x, nums):
     """
     if x == 0 or not nums:
         return None
+    if x > len(nums):
+        return None
     # Build an object of prime numbers based on the max num in nums
     obj_prime = buildPrime(max(nums))
 
