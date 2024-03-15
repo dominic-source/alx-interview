@@ -80,7 +80,7 @@ def isWinner(x, nums):
             record it for ben, set benMaria to false in order to
             stop the current iteration
     """
-    if x == 0 or not nums:
+    if x == 0 or not nums or x is None:
         return None
     if x > len(nums):
         return None
@@ -112,4 +112,6 @@ def isWinner(x, nums):
         return None
     if bens_win > marias_win:
         return "Ben"
-    return "Maria"
+    if bens_win < marias_win:
+        return "Maria"
+    return None
